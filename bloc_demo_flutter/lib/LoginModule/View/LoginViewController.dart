@@ -16,8 +16,8 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  final UserRepository userRepository;
 
+  final UserRepository userRepository;
   _LoginFormState(this.userRepository);
 
   @override
@@ -32,12 +32,9 @@ class _LoginFormState extends State<LoginForm> {
     }
 
     _onRegisterButtonPressed() {
-//      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-//          RegisterPage(userRepository: userRepository)), (Route<dynamic> route) => false);
-
       Navigator.of(context).push(
       CupertinoPageRoute<Null>(builder: (BuildContext context){
-      return RegisterPage(userRepository: userRepository);
+        return RegisterPage(userRepository: userRepository);
       }));
     }
 
@@ -86,5 +83,12 @@ class _LoginFormState extends State<LoginForm> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _usernameController.dispose();
+    super.dispose();
   }
 }
