@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'DashboardModule/View/HomePage.dart';
@@ -62,8 +61,8 @@ class App extends StatelessWidget {
             return HomePage();
           }
           if (state is NewUserAuthenticated) {
-                  print("Harsha: Received response, LIFT state");
-                  return HomePage();
+            print("Harsha: Received response, LIFT state");
+            return HomePage();
           }
           if (state is AuthenticationUnauthenticated) {
             return LoginPage(userRepository: userRepository);

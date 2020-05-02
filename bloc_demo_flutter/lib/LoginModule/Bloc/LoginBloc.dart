@@ -3,8 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:blocdemoflutter/Resources/UserRepository.dart';
-
-import 'AuthenticationBloc.dart';
+import 'package:blocdemoflutter/LoginModule/Bloc/AuthenticationBloc.dart';
 
 //README: Bloc dart file will contain Bloc Code, State(UI) & Event(User action)
 //Login Event is Mapped to Login State by Bloc
@@ -56,12 +55,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
         print(token.isEmpty);
         if (token.isEmpty)  {
+          authenticationBloc.add(LoggedOut());
           yield LoginFailure(error: "Invalid TOKEN");
         } else {
           authenticationBloc.add(LoggedIn(token: token));
           yield LoginInitial();
         }
       } catch (error) {
+        authenticationBloc.add(LoggedOut());
         yield LoginFailure(error: error.toString());
       }
     }
