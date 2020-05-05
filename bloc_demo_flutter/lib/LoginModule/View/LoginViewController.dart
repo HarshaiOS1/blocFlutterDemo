@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blocdemoflutter/Resources/UserRepository.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:blocdemoflutter/LoginModule/Services/LoginScreenServices.dart';
 
 class LoginForm extends StatefulWidget {
   final UserRepository userRepo;
@@ -23,12 +24,13 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     _onLoginButtonPressed() {
-      BlocProvider.of<LoginBloc>(context).add(
-        LoginButtonPressed(
-          username: _usernameController.text,
-          password: _passwordController.text,
-        ),
-      );
+//      BlocProvider.of<LoginBloc>(context).add(
+//        LoginButtonPressed(
+//          username: _usernameController.text,
+//          password: _passwordController.text,
+//        ),
+//      );
+      LoginScreenServices().loginNewUser();
     }
 
     _onRegisterButtonPressed() {
